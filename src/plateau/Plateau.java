@@ -15,5 +15,5 @@ public class Plateau {
 				System.out.print(niveau[l][c]);
 			}
 		}
-	}
+	} 
 }

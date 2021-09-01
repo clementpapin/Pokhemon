@@ -45,6 +45,6 @@ public class Plateau {
 				"/   H        H                /\n" + 
 				"/       H                     /\n" + 
 				"///////////////////////////////";
-		System.out.println(s);
+		System.out.println(s); 
 	}
 }

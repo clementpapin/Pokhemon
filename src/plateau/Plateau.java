@@ -8,40 +8,53 @@ public class Plateau {
 		this.niveau = niveau;
 		this.joueur = joueur;
 	}
+	public Plateau(Couple<char[][], Joueur> couple) {
+		this.niveau = couple.getFirst();
+		this.joueur = couple.getSecond();
+	}
 	
 	public void affichagePlateau() {
-		for (int l = 0; l < niveau.length; l++) {
-			for (int c = 0; c < niveau.length; c++) {
-				System.out.print(niveau[l][c]);
-			}
-		}
+		AffichagePlateau.afficherPlateau(this);
 	}
 	
 	public void deplacementJoueur(char entree) {
-		if(entree == 'z') {
-			if(niveau[joueur.getY()+1][joueur.getX()] == '/' || niveau[joueur.getY()+1][joueur.getX()] == 'E') {
-				
-			} else {
-				joueur.setY(joueur.getY()+1);
-			}
-		}else if(entree == 's') {
-			if(niveau[joueur.getY()-1][joueur.getX()] == '/') {
-				
-			} else {
-				joueur.setY(joueur.getY()-1);
-			}
-		} else if(entree == 'd') {
-			if(niveau[joueur.getY()][joueur.getX()+1] == '/') {
-				
-			} else {
-				joueur.setX(joueur.getX()+1);
-			}
-		}else {
-			if(niveau[joueur.getY()][joueur.getX()-1] == '/') {
-				
-			} else {
-				joueur.setX(joueur.getX()-1);
-			}
+		int j_col = joueur.getX();
+		int j_lig = joueur.getY();
+		
+		switch (entree) {
+		case 'z':
+			j_lig--;
+			break;
+		case 's':
+			j_lig++;
+			break;
+		case 'q':
+			j_col--;
+			break;
+		case 'd':
+			j_col++;
+			break;
+		default:
+			break;
+		}
+		char case_apres_mouvement = niveau[j_col][j_lig];
+		if(case_apres_mouvement==' ' || case_apres_mouvement=='E') {
+			joueur.setX(j_col); joueur.setY(j_lig);
+		}
+	}
+	
+	public char[][] getNiveau() {
+		return niveau;
+	}
+	public Joueur getJoueur() {
+		return joueur;
+	}
+	public static void main(String[] args) throws InterruptedException {
+		Plateau p = new Plateau(ChargerPlateau.charger("test"));
+		p.affichagePlateau();
+		for (int i = 0; i < 6; i++) {
+			Deplacement.entree_deplacement_joueur(p);
+			p.affichagePlateau();
 		}
 	}
 }

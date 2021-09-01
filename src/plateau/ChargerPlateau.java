@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 public class ChargerPlateau {
 
-	public static char[][] charger(String nom_fichier) {
+	public static Couple<char[][], Joueur> charger(String nom_fichier) {
 		ArrayList<String> al = new ArrayList<String>();
+		int j_x = 0;
+		int j_y = 0;
 		try (BufferedReader bf = new BufferedReader(
 				new FileReader("src/niveaux/"+nom_fichier))){
 			String f;
@@ -18,7 +20,7 @@ public class ChargerPlateau {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		int nbcol = 0;
 		for (int i = 0; i < al.size(); i++) {
 			if(nbcol<al.get(i).length()-1) {
@@ -26,18 +28,21 @@ public class ChargerPlateau {
 			}
 		}
 		char[][] niveau = new char[nbcol][al.size()];
-		
+
 		for (int i = 0; i < al.size(); i++) {
 			for (int j = 0; j < nbcol; j++) {
-				niveau[j][i] = al.get(i).charAt(j);
+
+				if(al.get(i).length()-1 > nbcol) {
+					niveau[j][i] = ' ';
+				}else if(al.get(i).charAt(j)=='J') {
+					j_x = j;
+					j_y = i;
+					niveau[j][i] = ' ';
+				}else {
+					niveau[j][i] = al.get(i).charAt(j);	
+				}
 			}
 		}
-		
-		return niveau;
+		return new Couple<char[][], Joueur>(niveau, new Joueur(j_x, j_y));
 	}
-
-
-		public static void main(String[] args) {
-			ChargerPlateau.charger("test");
-		}
-	}
+}

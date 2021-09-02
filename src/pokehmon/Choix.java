@@ -2,12 +2,18 @@ package pokehmon;
 
 public enum Choix {
 	
-	BALL(1), COOKIE(2), CAILLOU(3), FUITE(4);
+	BALL("Vous tentez d'attraper le pokehmon"), COOKIE("Le pokehmon devient joyeux !"), CAILLOU("Le pokehmon s'énerve !"), FUITE("Vous prenez la fuite");
 	
-	private int nb;
+
 	
-	private Choix(int nb) {
-		this.nb = nb;
+	private String res;
+	
+	private Choix(String r) {
+		this.res = r;
+	}
+	
+	public String getRes() {
+		return this.res;
 	}
 	
 

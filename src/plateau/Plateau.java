@@ -122,6 +122,7 @@ public class Plateau {
 			Deplacement.entree_deplacement_joueur(p);
 			p.affichagePlateau();
 		}
-		System.out.println("Nombres de pas écouler !");
+		System.out.println("Nombre de pas écouler !");
+		System.out.println("Votre score est de "+Plateau.score+" points !");
 	}
 }

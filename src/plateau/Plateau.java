@@ -11,7 +11,7 @@ public class Plateau {
 	private Joueur joueur;
 	private int nbPasMax;
 	public static int score = 0;
-	public static int nbPokehball = 1;
+	public static int nbPokehball = 20;
 	
 	public Plateau(char[][] niveau, Joueur joueur, int nbPas) {
 		this.niveau = niveau;

@@ -46,15 +46,19 @@ public class Plateau {
 		if(case_apres_mouvement==' ' || case_apres_mouvement=='H') {
 			joueur.setX(j_col); joueur.setY(j_lig);
 			joueur.augmenterPas();
+		} else if(case_apres_mouvement=='D') {
+			ChargerPlateau.charger("test_01");
 		}
 	}
 	
 	public char[][] getNiveau() {
 		return niveau;
 	}
+	
 	public Joueur getJoueur() {
 		return joueur;
 	}
+	
 	public static void main(String[] args) throws InterruptedException {
 		Plateau p = new Plateau(ChargerPlateau.charger("test"));
 		p.affichagePlateau();

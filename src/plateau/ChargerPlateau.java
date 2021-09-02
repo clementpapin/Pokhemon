@@ -31,6 +31,7 @@ public class ChargerPlateau {
 
 		for (int i = 0; i < al.size(); i++) {
 			for (int j = 0; j < nbcol; j++) {
+				niveau[j][i]=' ';
 
 				if(al.get(i).length()-1 > nbcol) {
 					niveau[j][i] = ' ';

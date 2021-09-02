@@ -4,14 +4,16 @@ public class Plateau {
 	private char[][] niveau;
 	private Joueur joueur;
 	private int nbPasMax;
+	private String nomPlateau;
 	
-	public Plateau(char[][] niveau, Joueur joueur, int nbPas) {
+	public Plateau(char[][] niveau, Joueur joueur, int nbPas, String nomPlateau) {
 		this.niveau = niveau;
 		this.joueur = joueur;
 		this.nbPasMax = nbPas;
+		this.nomPlateau = nomPlateau;
 	}
-	public Plateau(Couple<char[][], Joueur> couple) {
-		this(couple.getFirst(),couple.getSecond(),5);
+	public Plateau(Couple<char[][], Joueur, String> couple) {
+		this(couple.getFirst(),couple.getSecond(),10,couple.getThird());
 	}
 	
 	public int getNbPasMax() {
@@ -20,6 +22,14 @@ public class Plateau {
 	
 	public void affichagePlateau() {
 		AffichagePlateau.afficherPlateau(this);
+	}
+	
+	public void changerPlateau() {
+		Couple<char[][], Joueur, String> couple = ChargerPlateau.charger("niveau_5_6");
+		this.niveau = couple.getFirst();
+		int x = couple.getSecond().getX();
+		int y = couple.getSecond().getY();
+		this.joueur.setX(x);this.joueur.setY(y);
 	}
 	
 	public void deplacementJoueur(char entree) {
@@ -47,7 +57,7 @@ public class Plateau {
 			joueur.setX(j_col); joueur.setY(j_lig);
 			joueur.augmenterPas();
 		} else if(case_apres_mouvement=='D') {
-			ChargerPlateau.charger("test_01");
+			changerPlateau();
 		}
 	}
 	
@@ -60,7 +70,7 @@ public class Plateau {
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
-		Plateau p = new Plateau(ChargerPlateau.charger("test"));
+		Plateau p = new Plateau(ChargerPlateau.charger("niveau_5_5"));
 		p.affichagePlateau();
 		Joueur joueur = p.getJoueur();
 		while(joueur.getNbPas() != p.nbPasMax) {

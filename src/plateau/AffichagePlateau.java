@@ -50,6 +50,7 @@ public class AffichagePlateau {
 				break;
 			default:
 				System.out.print(niveau[c][l]);
+				System.out.print(niveau[c][l]);
 				break;
 			}
 		}

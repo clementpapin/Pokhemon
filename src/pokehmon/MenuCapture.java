@@ -3,7 +3,7 @@ package pokehmon;
 public class MenuCapture {
 
 	public static void AfficherPokemon(Pokehmon p) {
-		System.out.println(p.getApparence() + "Un " + p.getNom() + " sauvage apparait !");
+		System.out.println(p.getApparence() + '\n' + "Un " + p.getNom() + " sauvage apparait !");
 	}
 	
 	public static void AfficherChoix() {
@@ -19,6 +19,29 @@ public class MenuCapture {
 		System.out.println(Choix.values()[nb-1].getRes());
 	}
 	
+	public static void AfficherCapture(Pokehmon p ) {
+		System.out.println( "        ▄███████████▄        " + '\n' +
+							"     ▄███▓▓▓▓▓▓▓▓▓▓▓███▄     " + '\n' +
+							"    ███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███    " + '\n' +
+							"   ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██   " + '\n' +
+							"  ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██  " + '\n' +
+							" ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██ " + '\n' +
+							"██▓▓▓▓▓▓▓▓▓███████▓▓▓▓▓▓▓▓▓██" + '\n' +
+							"██▓▓▓▓▓▓▓▓██░░░░░██▓▓▓▓▓▓▓▓██" + '\n' +
+							"██▓▓▓▓▓▓▓██░░███░░██▓▓▓▓▓▓▓██" + '\n' +
+							"███████████░░███░░███████████" + '\n' +
+							"██░░░░░░░██░░███░░██░░░░░░░██" + '\n' +
+							"██░░░░░░░░██░░░░░██░░░░░░░░██" + '\n' +
+							"██░░░░░░░░░███████░░░░░░░░░██" + '\n' +
+							" ██░░░░░░░░░░░░░░░░░░░░░░░██ " + '\n' +
+							"  ██░░░░░░░░░░░░░░░░░░░░░██  " + '\n' +
+							"   ██░░░░░░░░░░░░░░░░░░░██   " + '\n' +
+							"    ███░░░░░░░░░░░░░░░███    " + '\n' +
+							"     ▀███░░░░░░░░░░░███▀     " + '\n' +
+							"        ▀███████████▀        " + '\n' +
+															+ '\n' +
+							p.getNom() + "attrapé !");
+	}
 	
 	
 	
@@ -27,6 +50,6 @@ public class MenuCapture {
 	
 	public static void main(String[] args) {
 	
-		MenuCapture.AfficherResChoix(2);
+		//MenuCapture.AfficherResChoix(2);
 	}
 }

@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.Random;
 
 import plateau.AffichagePlateau;
+import plateau.MidiPlayer;
 
 public class ModeCapture {
 	private Pokehmon pokehmon;
@@ -24,6 +25,21 @@ public class ModeCapture {
 	 * @return Le pokehmon si capturé ou null si le joueur ou le pokehmon a fui
 	 */
 	public Pokehmon startCapture() {
+		Runnable myrunnable = new Runnable() {
+		    public void run() {
+		    	MidiPlayer.play("src/plateau/wild-pokemon-battle.mid");
+		    	}
+		};
+
+		Thread wildThread = new Thread(myrunnable);
+		wildThread.start();
+		Runnable caught = new Runnable() {
+		    public void run() {
+		    	MidiPlayer.play("src/plateau/wild-pokemon-caught.mid");
+		    	}
+		};
+		Thread caughtThread = new Thread(caught);
+		
 		boolean captured = false, fuitejoueur = false;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int entree = -1;
@@ -68,9 +84,13 @@ public class ModeCapture {
 			entree = 0;
 		}
 		
-		if(captured) MenuCapture.afficherCapture(this.pokehmon);
+		if(captured) {
+			wildThread.interrupt();
+			caughtThread.start();
+			MenuCapture.afficherCapture(this.pokehmon);
+		}
 		else if (this.pokehmon == null && !fuitejoueur) System.out.println("Le pokehmon a fui");
-		
+		wildThread.interrupt();
 		return pokehmon;
 	}
 	

@@ -23,8 +23,8 @@ public class MenuCapture {
 	}
 
 	public static void AfficherCapture(Pokehmon p ) {
-		System.out.println( 
-				p.getNom() + " attrapé !");
+		MenuCapture.AfficherDessin();
+		System.out.println(p.getNom() + " attrapé !");
 	}
 
 	public static void AfficherCaptureFail(Pokehmon p) {
@@ -35,14 +35,14 @@ public class MenuCapture {
 
 	public static void AfficherDessin() {
 		char c;
-		
+
 		System.out.print("\u001b[48;38;5;0m");
 		try (FileReader f = new FileReader("src/ArtWork/Ball");){
 			int i = -1;
 			do {
 				i = f.read();
 				c = (char) i;
-				
+
 				if(c == '▄' || c == '█') {
 					System.out.print("\u001b[38;5;16m");
 				}else if(c == '░') {
@@ -52,8 +52,13 @@ public class MenuCapture {
 				}else {
 					System.out.print("\u001b[38;5;0m");
 				}
-				System.out.print(c);
 				
+				if(c != '▄' && c != '█' && c != '░' && c != '▓' && c !='\n') {
+					System.out.print(" ");
+				}else {
+					System.out.print(c);
+				}
+
 			}while(i != -1);
 
 		} catch (Exception e) {
@@ -61,20 +66,8 @@ public class MenuCapture {
 		}
 
 
-
-
-
-
 	}
 
 
 
-
-
-	public static void main(String[] args) {
-
-		//MenuCapture.AfficherResChoix(2);
-		MenuCapture.AfficherDessin();
-
-	}
 }

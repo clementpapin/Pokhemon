@@ -95,6 +95,7 @@ public class ModeCapture {
 			caughtThread.start();
 			MenuCapture.afficherCapture(this.pokehmon);
 			Plateau.score+=this.pokehmon.getPoints();
+			menu.Pokehdex.sendToPokehdex(this.pokehmon.getNom());
 			return pokehmon;
 		}
 		else if (this.pokehmon == null && !fuitejoueur) System.out.println("Le pokehmon a fui");

@@ -11,6 +11,7 @@ public class Plateau {
 	private Joueur joueur;
 	private int nbPasMax;
 	public static int score = 0;
+	public static int nbPokehball = 5;
 	
 	public Plateau(char[][] niveau, Joueur joueur, int nbPas) {
 		this.niveau = niveau;
@@ -118,7 +119,7 @@ public class Plateau {
 		Plateau p = new Plateau(ChargerPlateau.charger("niveau0"));
 		p.affichagePlateau();
 		Joueur joueur = p.getJoueur();
-		while(joueur.getNbPas() != p.nbPasMax) {
+		while(joueur.getNbPas() != p.nbPasMax && nbPokehball>0) {
 			Deplacement.entree_deplacement_joueur(p);
 			p.affichagePlateau();
 		}

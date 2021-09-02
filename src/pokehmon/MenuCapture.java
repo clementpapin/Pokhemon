@@ -68,6 +68,13 @@ public class MenuCapture {
 		MenuCapture.afficherDessin();
 		System.out.print("\u001b[38;5;255m");
 		System.out.println("\n" +"    "+ p.getNom() + " attrapé !");
+		
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

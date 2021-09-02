@@ -1,12 +1,27 @@
 package pokehmon;
 
 public class Pokehmon {
-	private String nom = "Pikahchu", apparence = ":D";
-	private double tauxcapture = 50.0, tauxfuite = 10.0;
+	private String nom, apparence;
+	private double tauxcapture, tauxfuite;
 	private int points = 1000;
 	
 	public Pokehmon() {
-		
+		nom = "Pikahchu";
+		apparence = "       ,___          .-;'\n" + 
+				"       `\"-.`\\_...._/`.`\n" + 
+				"    ,      \\        /\n" + 
+				" .-' ',    / ()   ()\\\n" + 
+				"`'._   \\  /()    .  (|\n" + 
+				"    > .' ;,     -'-  /\n" + 
+				"   / <   |;,     __.;\n" + 
+				"   '-.'-.|  , \\    , \\\n" + 
+				"      `>.|;, \\_)    \\_)\n" + 
+				"       `-;     ,    /\n" + 
+				"          \\    /   <\n" + 
+				"           '. <`'-,_)\n" + 
+				"            '._)";
+		tauxcapture = 50.0;
+		tauxfuite = 2.0;
 	}
 	
 	public String getNom() {

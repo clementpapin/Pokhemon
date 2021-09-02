@@ -39,8 +39,8 @@ public class MenuCapture {
 							"    ███░░░░░░░░░░░░░░░███    " + '\n' +
 							"     ▀███░░░░░░░░░░░███▀     " + '\n' +
 							"        ▀███████████▀        " + '\n' +
-															+ '\n' +
-							p.getNom() + "attrapé !");
+															  '\n' +
+							p.getNom() + " attrapé !");
 	}
 	
 	public static void AfficherCaptureFail(Pokehmon p) {

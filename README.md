@@ -8,9 +8,10 @@ Sprint 0
 
 
 
+
 Sprint 1
 
-- Avancement sur le plateau
+- Livraison du plateau
 - Avancement sur le déplacement
 - Avancement sur le mode de capture
 - Avancement du pokehmon
@@ -18,6 +19,18 @@ Sprint 1
 - Problèmes avec git
 - Démo : affichage du plateau
 - Une meilleure séparation du travail afin que tout le monde puisse travailler en meme temps.
+
+Sprint 2
+
+- Livraison déplacement
+- Livraison compteur de pas
+- Livraison mode capture
+- Livraison fuir
+- Avancement zones
+- Avancement mobs
+- Avancement esthétique
+
+
 
 
 

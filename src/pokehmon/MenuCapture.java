@@ -19,18 +19,40 @@ public class MenuCapture {
 	public static void afficherResChoix(int nb) {
 		String res = "";
 		switch(nb) {
-			case 1:
-				 res = new Ball().getRes();
-				break;
-			case 2:
-				res = new Cookie().getRes();
-				break;
-			case 3:
-				res = new Caillou().getRes();
-				break;
-			case 4:
-				res = new Fuite().getRes();
-				break;
+		case 1:
+			System.out.println(new Ball().getRes());
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("1...");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println('\t' + "2...");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("\t\t" + "3...");
+
+			break;
+		case 2:
+			res = new Cookie().getRes();
+			break;
+		case 3:
+			res = new Caillou().getRes();
+			break;
+		case 4:
+			res = new Fuite().getRes();
+			break;
 
 		}
 		System.out.println(res);
@@ -46,7 +68,7 @@ public class MenuCapture {
 		MenuCapture.afficherDessin();
 		System.out.print("\u001b[38;5;255m");
 		System.out.println("\n" +"    "+ p.getNom() + " attrapé !");
-		
+
 	}
 
 	public static void afficherCaptureFail(Pokehmon p) {

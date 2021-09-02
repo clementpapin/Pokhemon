@@ -44,4 +44,8 @@ public class Joueur {
 		this.score = score;
 	}
 	
+	public void augmenterPas() {
+		nbPas++;
+	}
+	
 }

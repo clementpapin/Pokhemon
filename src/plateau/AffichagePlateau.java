@@ -2,10 +2,10 @@ package plateau;
 
 public class AffichagePlateau {
 	public static void afficherPlateau(Plateau p) {
-		
 		System.out.print("\u001b[48;38;5;0m");
 		char[][] niveau = p.getNiveau();
 		Joueur joueur = p.getJoueur();
+		System.out.println(p.getNbPasMax()-joueur.getNbPas());
 		int nblig = 0;
 		for (int i = 0; i < niveau.length; i++) {
 			if(nblig<niveau[i].length) {

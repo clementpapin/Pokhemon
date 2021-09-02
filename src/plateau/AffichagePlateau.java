@@ -49,10 +49,10 @@ public class AffichagePlateau {
 				System.out.print("  ");
 				break;
 			case 'D':
-				System.out.print("░░");
+				System.out.print("  ");
 				break;
 			case 'G':
-				System.out.print("░░");
+				System.out.print("  ");
 				break;
 			default:
 				System.out.print(niveau[c][l]);
@@ -77,10 +77,10 @@ public class AffichagePlateau {
 			System.out.print("\u001b[48;5;136m");
 			break;
 		case 'D':
-			System.out.print("\u001b[48;5;255m\u001b[38;5;208m");
+			System.out.print("\u001b[48;5;223m\u001b[38;5;208m");
 			break;
 		case 'G':
-			System.out.print("\u001b[48;5;255m\u001b[38;5;208m");
+			System.out.print("\u001b[48;5;223m\u001b[38;5;208m");
 			break;
 		default:
 			break;

@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import plateau.MidiPlayer;
 import plateau.Plateau;
 
 public class MenuPrincipal {
@@ -14,11 +15,20 @@ public class MenuPrincipal {
 
 
 	public static void main(String[] args) {
+		Runnable myrunnable = new Runnable() {
+		    public void run() {
+		    	MidiPlayer.play("title-screen.mid");
+		    	}
+		};
+		
+		
 		boolean end = false;
 		int entree = -1;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		while (!end) {
+			Thread wildThread = new Thread(myrunnable);
+			wildThread.start();
 			do {
 				displayChoices();
 				try {
@@ -30,6 +40,7 @@ public class MenuPrincipal {
 			switch (entree) {
 			case 1:
 				try {
+					wildThread.interrupt();
 					Plateau.main(new String[0]);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

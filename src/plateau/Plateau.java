@@ -15,7 +15,7 @@ public class Plateau {
 	
 	private static Runnable myrunnable = new Runnable() {
 	    public void run() {
-	    	MidiPlayer.play("title-screen.mid");
+	    	MidiPlayer.play("route-1.mid");
 	    	}
 	};
 	
@@ -27,7 +27,7 @@ public class Plateau {
 		this.nbPasMax = nbPas;
 	}
 	public Plateau(Couple<char[][], Joueur> couple) {
-		this(couple.getFirst(),couple.getSecond(),50);
+		this(couple.getFirst(),couple.getSecond(),5);
 	}
 	
 	public int getNbPasMax() {
@@ -143,5 +143,6 @@ public class Plateau {
 			System.out.println("Nombre de pas écouler !");
 			System.out.println("Votre score est de "+Plateau.score+" points !");
 		}
+		wildThread.interrupt();
 	}
 }

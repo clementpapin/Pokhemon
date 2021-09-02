@@ -27,8 +27,25 @@ Sprint 2
 - Livraison mode capture
 - Livraison fuir
 - Avancement zones
-- Avancement mobs
+- Avancement pokehmons
 - Avancement esthétique
+
+- Avancée correcte 
+- ce qui cause moins de stress
+
+Sprint 3
+
+- Livraison Ball
+- Livraison Cookie
+- Livraison Caillou
+- Livraison changement de zones
+- Avancement pokehmons
+- Avancement esthétique
+
+- Apporter des modifications dans le code pour bien intégrer les issues
+
+
+Sprint 4
 
 
 

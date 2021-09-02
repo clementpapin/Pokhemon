@@ -53,6 +53,11 @@ Sprint 4
 - Avancement des 2 modes de jeu
 - Avancement esthétique
 
+Sprint 5
+
+- Avancement des 2 modes de jeu
+- 
+
 
 
 

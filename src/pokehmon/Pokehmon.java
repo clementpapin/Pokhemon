@@ -1,12 +1,20 @@
 package pokehmon;
 
 public class Pokehmon {
-	private String nom = "Pikahchu";
+	private String nom = "Pikahchu", apparence = ":D";
 	private double tauxcapture = 50.0, tauxfuite = 10.0;
 	private int points = 1000;
 	
 	public Pokehmon() {
 		
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+	
+	public String getApparence() {
+		return apparence;
 	}
 
 	public double getTauxcapture() {

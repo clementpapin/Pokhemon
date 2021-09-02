@@ -1,7 +1,13 @@
+package menu;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Main {
+public class MenuPrincipal {
+	
+	
+	
+	
 	public static void main(String[] args) {
 		boolean end = false;
 		int entree = -1;
@@ -29,4 +35,5 @@ public class Main {
 				+ "2. Comment jouer ?" + '\n'
 				+ "3. Quitter");
 	}
+
 }

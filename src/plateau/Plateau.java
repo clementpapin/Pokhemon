@@ -10,6 +10,7 @@ public class Plateau {
 	private char[][] niveau;
 	private Joueur joueur;
 	private int nbPasMax;
+	public static int score = 0;
 	
 	public Plateau(char[][] niveau, Joueur joueur, int nbPas) {
 		this.niveau = niveau;

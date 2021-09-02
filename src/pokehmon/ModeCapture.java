@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.Random;
 
 import plateau.MidiPlayer;
+import plateau.Plateau;
 
 public class ModeCapture {
 	private Pokehmon pokehmon;
@@ -89,10 +90,12 @@ public class ModeCapture {
 			wildThread.interrupt();
 			caughtThread.start();
 			MenuCapture.afficherCapture(this.pokehmon);
+			Plateau.score+=this.pokehmon.getPoints();
+			return pokehmon;
 		}
 		else if (this.pokehmon == null && !fuitejoueur) System.out.println("Le pokehmon a fui");
 		wildThread.interrupt();
-		return pokehmon;
+		return null;
 	}
 	
 	/**

@@ -5,8 +5,8 @@ public class AffichagePlateau {
 		System.out.print("\u001b[48;38;5;0m");
 		char[][] niveau = p.getNiveau();
 		Joueur joueur = p.getJoueur();
-		System.out.println(p.getNbPasMax()-joueur.getNbPas());
-		
+		System.out.println("Nombre de pas restants : "+(p.getNbPasMax()-joueur.getNbPas()));
+		System.out.println("Score : "+Plateau.score);
 		int nblig = 0;
 		for (int i = 0; i < niveau.length; i++) {
 			if(nblig<niveau[i].length) {

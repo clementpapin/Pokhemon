@@ -1,20 +1,7 @@
 package pokehmon;
 
-public enum Choix {
+public interface Choix {
 	
-	BALL("Vous tentez d'attraper le pokehmon"), COOKIE("Le pokehmon devient joyeux !"), CAILLOU("Le pokehmon s'énerve !"), FUITE("Vous prenez la fuite");
+	public String getRes();
 	
-
-	
-	private String res;
-	
-	private Choix(String r) {
-		this.res = r;
-	}
-	
-	public String getRes() {
-		return this.res;
-	}
-	
-
 }

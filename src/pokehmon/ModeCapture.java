@@ -42,21 +42,22 @@ public class ModeCapture {
 			} while(!isValidChoice(entree));
 			
 			MenuCapture.afficherResChoix(entree);
-			switch(Choix.values()[entree-1]) {
-				case BALL :
+			
+			switch(entree) {
+				case 1 :
 					captured = capturePokehmon();
 					if(!captured) MenuCapture.afficherCaptureFail(pokehmon);
 					break;
 					
-				case CAILLOU :
+				case 2 :
 					lanceCaillou();
 					break;
 					
-				case COOKIE :
+				case 3 :
 					donneCookie();
 					break;
 					
-				case FUITE :
+				case 4 :
 					fuite();
 					fuitejoueur = true;
 					break;
@@ -80,7 +81,7 @@ public class ModeCapture {
 	 * @return True si le choix est valide, false dans le cas contraire
 	 */
 	private boolean isValidChoice(int choice) {
-		return choice > 0 && choice <= Choix.values().length; 
+		return choice > 0 && choice <= 4; 
 	}
 	
 	/**

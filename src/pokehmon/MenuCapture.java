@@ -1,7 +1,7 @@
 package pokehmon;
 
 import java.io.FileReader;
-import java.io.InputStreamReader;
+
 
 public class MenuCapture {
 
@@ -18,8 +18,23 @@ public class MenuCapture {
 	}
 
 	public static void afficherResChoix(int nb) {
+		String res = "";
+		switch(nb) {
+			case 1:
+				 res = new Ball().getRes();
+				break;
+			case 2:
+				res = new Cookie().getRes();
+				break;
+			case 3:
+				res = new Caillou().getRes();
+				break;
+			case 4:
+				res = new Fuite().getRes();
+				break;
 
-		System.out.println(Choix.values()[nb-1].getRes());
+		}
+		System.out.println(res);
 	}
 
 	public static void afficherCapture(Pokehmon p ) {
@@ -59,7 +74,7 @@ public class MenuCapture {
 				}else {
 					System.out.print("\u001b[38;5;0m");
 				}
-				
+
 				if(c != '▄' && c != '█' && c != '░' && c != '▓' && c !='\n') {
 					System.out.print(" ");
 				}else {
@@ -71,7 +86,7 @@ public class MenuCapture {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 
 	}
 

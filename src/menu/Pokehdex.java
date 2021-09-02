@@ -44,14 +44,15 @@ public class Pokehdex {
 		}
 	}
 
-	private static void afficherPokehmons(Map pokehdex) {
+	private static void afficherPokehmons(Map<String, String> pokehdex) {
 		for (ListePokehmon poke : ListePokehmon.values()) {
-			System.out.println('\t'+(isInPokehdex(pokehdex, poke.getNom()) ? "\u001b[48;5;11m" :"") +poke.getNom() + "\u001b[48;5;0m");
+			System.out.println('\t'+(isInPokehdex(pokehdex, poke.getNom()) ? "\u001b[48;5;47m\u001b[38;5;0m" :"") +poke.getNom() + "\u001b[48;38;5;0m\u001b[38;5;255m");
 		}
 	}
 	
 	public static boolean isInPokehdex(Map<String, String> pokehdex, String name) {
-		return Integer.parseInt(pokehdex.get(.getNom())) > 0;
+		if(pokehdex.get(name) == null) return false; 
+		return Integer.parseInt(pokehdex.get(name)) > 0;
 	}
 	
 	public static void sendToPokehdex(String name) {
@@ -82,7 +83,7 @@ public class Pokehdex {
 			e.printStackTrace();
 		}
 	    
-	    System.out.println(map);
+//	    System.out.println(map);
 	    
 		return map;
 	}

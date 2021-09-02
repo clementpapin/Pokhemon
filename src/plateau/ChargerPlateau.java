@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ChargerPlateau {
 
-	public static Couple<char[][], Joueur, String> charger(String nom_fichier) {
+	public static Couple<char[][], Joueur> charger(String nom_fichier) {
 		ArrayList<String> al = new ArrayList<String>();
 		int j_x = 0;
 		int j_y = 0;
@@ -44,6 +44,6 @@ public class ChargerPlateau {
 				}
 			}
 		}
-		return new Couple<char[][], Joueur, String>(niveau, new Joueur(j_x, j_y), nom_fichier);
+		return new Couple<char[][], Joueur>(niveau, new Joueur(j_x, j_y));
 	}
 }

@@ -1,14 +1,12 @@
 package plateau;
 
-public class Couple<T,S,V> {
+public class Couple<T,S> {
 	private T first;
 	private S second;
-	private V third;
 	
-	public Couple(T first, S second, V third) {
+	public Couple(T first, S second) {
 		this.first = first;
 		this.second = second;
-		this.third = third;
 	}
 
 	public T getFirst() {
@@ -19,10 +17,6 @@ public class Couple<T,S,V> {
 		return second;
 	}
 	
-	public V getThird() {
-		return third;
-	}
-
 	@Override
 	public String toString() {
 		return "{" + first + ", " + second + "}";

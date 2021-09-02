@@ -4,16 +4,14 @@ public class Plateau {
 	private char[][] niveau;
 	private Joueur joueur;
 	private int nbPasMax;
-	private String nomPlateau;
 	
-	public Plateau(char[][] niveau, Joueur joueur, int nbPas, String nomPlateau) {
+	public Plateau(char[][] niveau, Joueur joueur, int nbPas) {
 		this.niveau = niveau;
 		this.joueur = joueur;
 		this.nbPasMax = nbPas;
-		this.nomPlateau = nomPlateau;
 	}
-	public Plateau(Couple<char[][], Joueur, String> couple) {
-		this(couple.getFirst(),couple.getSecond(),10,couple.getThird());
+	public Plateau(Couple<char[][], Joueur> couple) {
+		this(couple.getFirst(),couple.getSecond(),20);
 	}
 	
 	public int getNbPasMax() {
@@ -25,11 +23,32 @@ public class Plateau {
 	}
 	
 	public void changerPlateau() {
-		Couple<char[][], Joueur, String> couple = ChargerPlateau.charger("niveau_5_6");
-		this.niveau = couple.getFirst();
-		int x = couple.getSecond().getX();
-		int y = couple.getSecond().getY();
-		this.joueur.setX(x);this.joueur.setY(y);
+		char pos = niveau[joueur.getX()][joueur.getY()];
+		if(pos == 'D') {
+			Couple<char[][], Joueur> couple = ChargerPlateau.charger("niveau2");
+			this.niveau = couple.getFirst();
+			int x = couple.getSecond().getX();
+			int y = couple.getSecond().getY();
+			this.joueur.setX(x);this.joueur.setY(y);
+		} else if(pos == 'G') {
+			Couple<char[][], Joueur> couple = ChargerPlateau.charger("niveau1");
+			this.niveau = couple.getFirst();
+			int x = couple.getSecond().getX();
+			int y = couple.getSecond().getY();
+			this.joueur.setX(x);this.joueur.setY(y);
+		} else if(pos == 'L') {
+			Couple<char[][], Joueur> couple = ChargerPlateau.charger("niveau01");
+			this.niveau = couple.getFirst();
+			int x = couple.getSecond().getX();
+			int y = couple.getSecond().getY();
+			this.joueur.setX(x);this.joueur.setY(y);
+		} else if(pos == 'D') {
+			Couple<char[][], Joueur> couple = ChargerPlateau.charger("niveau02");
+			this.niveau = couple.getFirst();
+			int x = couple.getSecond().getX();
+			int y = couple.getSecond().getY();
+			this.joueur.setX(x);this.joueur.setY(y);
+		}
 	}
 	
 	public void deplacementJoueur(char entree) {
@@ -58,6 +77,12 @@ public class Plateau {
 			joueur.augmenterPas();
 		} else if(case_apres_mouvement=='D') {
 			changerPlateau();
+		} else if(case_apres_mouvement=='G') {
+			changerPlateau();
+		} else if(case_apres_mouvement=='L') {
+			changerPlateau();
+		} else if(case_apres_mouvement=='P') {
+			changerPlateau();
 		}
 	}
 	
@@ -70,7 +95,7 @@ public class Plateau {
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
-		Plateau p = new Plateau(ChargerPlateau.charger("niveau_5_5"));
+		Plateau p = new Plateau(ChargerPlateau.charger("niveau0"));
 		p.affichagePlateau();
 		Joueur joueur = p.getJoueur();
 		while(joueur.getNbPas() != p.nbPasMax) {

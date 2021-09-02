@@ -22,8 +22,7 @@ public class Plateau {
 		AffichagePlateau.afficherPlateau(this);
 	}
 	
-	public void changerPlateau() {
-		char pos = niveau[joueur.getX()][joueur.getY()];
+	public void changerPlateau(char pos) {
 		if(pos == 'D') {
 			Couple<char[][], Joueur> couple = ChargerPlateau.charger("niveau2");
 			this.niveau = couple.getFirst();
@@ -42,7 +41,7 @@ public class Plateau {
 			int x = couple.getSecond().getX();
 			int y = couple.getSecond().getY();
 			this.joueur.setX(x);this.joueur.setY(y);
-		} else if(pos == 'D') {
+		} else if(pos == 'P') {
 			Couple<char[][], Joueur> couple = ChargerPlateau.charger("niveau02");
 			this.niveau = couple.getFirst();
 			int x = couple.getSecond().getX();
@@ -76,13 +75,13 @@ public class Plateau {
 			joueur.setX(j_col); joueur.setY(j_lig);
 			joueur.augmenterPas();
 		} else if(case_apres_mouvement=='D') {
-			changerPlateau();
+			changerPlateau(case_apres_mouvement);
 		} else if(case_apres_mouvement=='G') {
-			changerPlateau();
+			changerPlateau(case_apres_mouvement);
 		} else if(case_apres_mouvement=='L') {
-			changerPlateau();
+			changerPlateau(case_apres_mouvement);
 		} else if(case_apres_mouvement=='P') {
-			changerPlateau();
+			changerPlateau(case_apres_mouvement);
 		}
 	}
 	

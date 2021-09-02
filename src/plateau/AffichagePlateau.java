@@ -48,15 +48,12 @@ public class AffichagePlateau {
 			case ' ':
 				System.out.print("  ");
 				break;
-			case 'D':
-				System.out.print("  ");
-				break;
-			case 'G':
-				System.out.print("  ");
+			case 'R':
+				System.out.print("▓▓");
 				break;
 			default:
-				System.out.print(niveau[c][l]);
-				System.out.print(niveau[c][l]);
+				System.out.print("\u001b[48;5;223m\u001b[38;5;208m");
+				System.out.print("  ");
 				break;
 			}
 		}
@@ -76,11 +73,8 @@ public class AffichagePlateau {
 		case ' ':
 			System.out.print("\u001b[48;5;136m");
 			break;
-		case 'D':
-			System.out.print("\u001b[48;5;223m\u001b[38;5;208m");
-			break;
-		case 'G':
-			System.out.print("\u001b[48;5;223m\u001b[38;5;208m");
+		case 'R':
+			System.out.print("\u001b[38;5;94m\u001b[48;5;136m");
 			break;
 		default:
 			break;

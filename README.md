@@ -47,6 +47,12 @@ Sprint 3
 
 Sprint 4
 
+- Livraison pokehmons
+- Livraison score
+- Avancement nombre balls
+- Avancement des 2 modes de jeu
+- Avancement esthétique
+
 
 
 

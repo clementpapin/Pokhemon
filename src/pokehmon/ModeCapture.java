@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Random;
 
-import plateau.AffichagePlateau;
+import plateau.MidiPlayer;
+import plateau.Plateau;
 
 public class ModeCapture {
 	private Pokehmon pokehmon;
@@ -24,17 +25,33 @@ public class ModeCapture {
 	 * @return Le pokehmon si capturé ou null si le joueur ou le pokehmon a fui
 	 */
 	public Pokehmon startCapture() {
+		Runnable myrunnable = new Runnable() {
+		    public void run() {
+		    	MidiPlayer.play("wild-pokemon-battle.mid");
+		    	}
+		};
+		
+		Thread wildThread = new Thread(myrunnable);
+		wildThread.start();
+		Runnable caught = new Runnable() {
+		    public void run() {
+		    	MidiPlayer.play("wild-pokemon-caught.mid");
+		    	}
+		};
+		Thread caughtThread = new Thread(caught);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		boolean captured = false, fuitejoueur = false;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int entree = -1;
-		
 		MenuCapture.afficherPokemon(pokehmon);
-
-		while(this.pokehmon != null && captured == false) {
+		boolean hasPokehball = true;
+		while(this.pokehmon != null && !captured && hasPokehball) {
 			do {
 				try {
-//					System.out.println("Taux capture :" + this.pokehmon.getTauxcapture());
-//					System.out.println("Taux fuite :" + this.pokehmon.getTauxfuite());
 					MenuCapture.afficherChoix();
 					entree = Integer.parseInt(br.readLine());
 				} catch (Exception e) {	
@@ -42,11 +59,12 @@ public class ModeCapture {
 			} while(!isValidChoice(entree));
 			
 			MenuCapture.afficherResChoix(entree);
-			
 			switch(entree) {
 				case 1 :
+					Plateau.nbPokehball--;
 					captured = capturePokehmon();
 					if(!captured) MenuCapture.afficherCaptureFail(pokehmon);
+					System.out.println("Nombre de pokehball restantes : "+Plateau.nbPokehball);
 					break;
 					
 				case 2 :
@@ -65,14 +83,23 @@ public class ModeCapture {
 
 			if(!captured && this.pokehmon != null && essaifuitePokehmon()) fuite();
 			if(this.pokehmon != null) pokehmon.setTauxfuite(pokehmon.getTauxfuite()+AUGMENTATIONFUITE);
+			if(Plateau.nbPokehball <= 0) {
+				hasPokehball = false;
+			}
 			
 			entree = 0;
 		}
 		
-		if(captured) MenuCapture.afficherCapture(this.pokehmon);
+		if(captured) {
+			wildThread.interrupt();
+			caughtThread.start();
+			MenuCapture.afficherCapture(this.pokehmon);
+			Plateau.score+=this.pokehmon.getPoints();
+			return pokehmon;
+		}
 		else if (this.pokehmon == null && !fuitejoueur) System.out.println("Le pokehmon a fui");
-		
-		return pokehmon;
+		wildThread.interrupt();
+		return null;
 	}
 	
 	/**

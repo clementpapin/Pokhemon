@@ -2,7 +2,6 @@ package pokehmon;
 
 import java.io.FileReader;
 
-
 public class MenuCapture {
 
 	public static void afficherPokemon(Pokehmon p) {

@@ -3,25 +3,22 @@ package pokehmon;
 public class Pokehmon {
 	private String nom, apparence;
 	private double tauxcapture, tauxfuite;
-	private int points = 1000;
+	private int points;
 	
 	public Pokehmon() {
-		nom = "Pikahchu";
-		apparence = "       ,___          .-;'\n" + 
-				"       `\"-.`\\_...._/`.`\n" + 
-				"    ,      \\        /\n" + 
-				" .-' ',    / ()   ()\\\n" + 
-				"`'._   \\  /()    .  (|\n" + 
-				"    > .' ;,     -'-  /\n" + 
-				"   / <   |;,     __.;\n" + 
-				"   '-.'-.|  , \\    , \\\n" + 
-				"      `>.|;, \\_)    \\_)\n" + 
-				"       `-;     ,    /\n" + 
-				"          \\    /   <\n" + 
-				"           '. <`'-,_)\n" + 
-				"            '._)";
-		tauxcapture = 50.0;
-		tauxfuite = 2.0;
+		this(ListePokehmon.PIKAHCHU.getNom(),ListePokehmon.PIKAHCHU.getApparence(), ListePokehmon.PIKAHCHU.getTauxcapture(), ListePokehmon.PIKAHCHU.getTauxfuite(), ListePokehmon.PIKAHCHU.getPoints());
+	}
+	
+	public Pokehmon(ListePokehmon poke) {
+		this(poke.getNom(),poke.getApparence(),poke.getTauxcapture(),poke.getTauxfuite(),poke.getPoints());
+	}
+	
+	public Pokehmon(String nom, String apparence, double tauxcapture, double tauxfuite, int points) {
+		this.nom = nom;
+		this.apparence = apparence;
+		this.tauxcapture = tauxcapture;
+		this.tauxfuite = tauxfuite;
+		this.points = points;
 	}
 	
 	public String getNom() {

@@ -13,6 +13,14 @@ public class Plateau {
 	public static int score = 0;
 	public static int nbPokehball = 20;
 	
+	private static Runnable myrunnable = new Runnable() {
+	    public void run() {
+	    	MidiPlayer.play("title-screen.mid");
+	    	}
+	};
+	
+	public static Thread wildThread = new Thread(myrunnable);
+	
 	public Plateau(char[][] niveau, Joueur joueur, int nbPas) {
 		this.niveau = niveau;
 		this.joueur = joueur;
@@ -101,10 +109,13 @@ public class Plateau {
 	private void chance_apparition_pokemon() {
 		Random r = new Random();
 		if(r.nextDouble()>0.5) {
+			wildThread.interrupt();
 			ListePokehmon poke = ListePokehmon.values()[r.nextInt(ListePokehmon.values().length)];
 			Pokehmon p = new Pokehmon(poke);
 			ModeCapture mc = new ModeCapture(p);
 			mc.startCapture();
+			wildThread = new Thread(myrunnable);
+			wildThread.start();
 		}
 	}
 	public char[][] getNiveau() {
@@ -119,6 +130,8 @@ public class Plateau {
 		Plateau p = new Plateau(ChargerPlateau.charger("niveau0"));
 		p.affichagePlateau();
 		Joueur joueur = p.getJoueur();
+		wildThread.start();
+		
 		while(joueur.getNbPas() != p.nbPasMax && nbPokehball>0) {
 			Deplacement.entree_deplacement_joueur(p);
 			p.affichagePlateau();

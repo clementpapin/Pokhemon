@@ -3,14 +3,19 @@ package plateau;
 public class Plateau {
 	private char[][] niveau;
 	private Joueur joueur;
+	private int nbPasMax;
 	
-	public Plateau(char[][] niveau, Joueur joueur) {
+	public Plateau(char[][] niveau, Joueur joueur, int nbPas) {
 		this.niveau = niveau;
 		this.joueur = joueur;
+		this.nbPasMax = nbPas;
 	}
 	public Plateau(Couple<char[][], Joueur> couple) {
-		this.niveau = couple.getFirst();
-		this.joueur = couple.getSecond();
+		this(couple.getFirst(),couple.getSecond(),5);
+	}
+	
+	public int getNbPasMax() {
+		return nbPasMax;
 	}
 	
 	public void affichagePlateau() {
@@ -40,6 +45,7 @@ public class Plateau {
 		char case_apres_mouvement = niveau[j_col][j_lig];
 		if(case_apres_mouvement==' ' || case_apres_mouvement=='H') {
 			joueur.setX(j_col); joueur.setY(j_lig);
+			joueur.augmenterPas();
 		}
 	}
 	
@@ -52,9 +58,11 @@ public class Plateau {
 	public static void main(String[] args) throws InterruptedException {
 		Plateau p = new Plateau(ChargerPlateau.charger("test"));
 		p.affichagePlateau();
-		for (int i = 0; i < 100; i++) {
+		Joueur joueur = p.getJoueur();
+		while(joueur.getNbPas() != p.nbPasMax) {
 			Deplacement.entree_deplacement_joueur(p);
 			p.affichagePlateau();
 		}
+		System.out.println("Nombres de pas écouler !");
 	}
 }

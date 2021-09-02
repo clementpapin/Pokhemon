@@ -43,6 +43,9 @@ public class MenuCapture {
 							p.getNom() + "attrapé !");
 	}
 	
+	public static void AfficherCaptureFail(Pokehmon p) {
+		System.out.println(p.getNom() + "s'échappe de la ball !");
+	}
 	
 	
 	

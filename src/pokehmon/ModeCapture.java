@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Random;
 
-import plateau.AffichagePlateau;
 import plateau.MidiPlayer;
 
 public class ModeCapture {
@@ -30,7 +29,7 @@ public class ModeCapture {
 		    	MidiPlayer.play("src/plateau/wild-pokemon-battle.mid");
 		    	}
 		};
-
+		
 		Thread wildThread = new Thread(myrunnable);
 		wildThread.start();
 		Runnable caught = new Runnable() {
@@ -39,7 +38,11 @@ public class ModeCapture {
 		    	}
 		};
 		Thread caughtThread = new Thread(caught);
-		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		boolean captured = false, fuitejoueur = false;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int entree = -1;
@@ -49,8 +52,6 @@ public class ModeCapture {
 		while(this.pokehmon != null && captured == false) {
 			do {
 				try {
-//					System.out.println("Taux capture :" + this.pokehmon.getTauxcapture());
-//					System.out.println("Taux fuite :" + this.pokehmon.getTauxfuite());
 					MenuCapture.afficherChoix();
 					entree = Integer.parseInt(br.readLine());
 				} catch (Exception e) {	

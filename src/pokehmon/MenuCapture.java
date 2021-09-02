@@ -24,7 +24,7 @@ public class MenuCapture {
 
 	public static void AfficherCapture(Pokehmon p ) {
 		MenuCapture.AfficherDessin();
-		System.out.println(p.getNom() + " attrapé !");
+		System.out.println('\n' + p.getNom() + " attrapé !");
 	}
 
 	public static void AfficherCaptureFail(Pokehmon p) {
@@ -46,7 +46,7 @@ public class MenuCapture {
 				if(c == '▄' || c == '█') {
 					System.out.print("\u001b[38;5;16m");
 				}else if(c == '░') {
-					System.out.print("\u001b[38;5;7m");;
+					System.out.print("\u001b[38;5;7m");
 				}else if(c == '▓') {
 					System.out.print("\u001b[38;5;1m");
 				}else {
@@ -64,7 +64,7 @@ public class MenuCapture {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-
+		System.out.print("\u001b[38;5;16m");
 
 	}
 

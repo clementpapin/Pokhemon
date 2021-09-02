@@ -38,7 +38,7 @@ public class Plateau {
 			break;
 		}
 		char case_apres_mouvement = niveau[j_col][j_lig];
-		if(case_apres_mouvement==' ' || case_apres_mouvement=='E') {
+		if(case_apres_mouvement==' ' || case_apres_mouvement=='H') {
 			joueur.setX(j_col); joueur.setY(j_lig);
 		}
 	}
@@ -52,7 +52,7 @@ public class Plateau {
 	public static void main(String[] args) throws InterruptedException {
 		Plateau p = new Plateau(ChargerPlateau.charger("test"));
 		p.affichagePlateau();
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 100; i++) {
 			Deplacement.entree_deplacement_joueur(p);
 			p.affichagePlateau();
 		}

@@ -1,8 +1,9 @@
 package plateau;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class ChargerPlateau {
@@ -11,8 +12,11 @@ public class ChargerPlateau {
 		ArrayList<String> al = new ArrayList<String>();
 		int j_x = 0;
 		int j_y = 0;
+		System.out.println(System.getProperty("user.dir"));
+		InputStream in = ChargerPlateau.class.getResourceAsStream("/niveaux/"+nom_fichier); 
+
 		try (BufferedReader bf = new BufferedReader(
-				new FileReader("src/niveaux/"+nom_fichier))){
+				new InputStreamReader(in))){
 			String f;
 			while((f = bf.readLine()) != null) {
 				al.add(f+'\n');

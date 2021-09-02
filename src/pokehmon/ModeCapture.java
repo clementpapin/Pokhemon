@@ -27,7 +27,7 @@ public class ModeCapture {
 	public Pokehmon startCapture() {
 		Runnable myrunnable = new Runnable() {
 		    public void run() {
-		    	MidiPlayer.play("src/plateau/wild-pokemon-battle.mid");
+		    	MidiPlayer.play("wild-pokemon-battle.mid");
 		    	}
 		};
 		
@@ -35,7 +35,7 @@ public class ModeCapture {
 		wildThread.start();
 		Runnable caught = new Runnable() {
 		    public void run() {
-		    	MidiPlayer.play("src/plateau/wild-pokemon-caught.mid");
+		    	MidiPlayer.play("wild-pokemon-caught.mid");
 		    	}
 		};
 		Thread caughtThread = new Thread(caught);

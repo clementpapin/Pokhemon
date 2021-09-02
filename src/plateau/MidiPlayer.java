@@ -1,15 +1,16 @@
 package plateau;
+
 import javax.sound.midi.*;
 import java.io.*;
 /** Plays a midi file provided on command line */
 public class MidiPlayer {
 
 	public static void play(String string) {
-		File midiFile = new File(string);
+		InputStream in = ChargerPlateau.class.getResourceAsStream("/musiques/"+string); 
 		// Play once
 		try {
 			Sequencer sequencer = MidiSystem.getSequencer();
-			sequencer.setSequence(MidiSystem.getSequence(midiFile));
+			sequencer.setSequence(MidiSystem.getSequence(in));
 			sequencer.open();
 			sequencer.start();
 			while(true) {

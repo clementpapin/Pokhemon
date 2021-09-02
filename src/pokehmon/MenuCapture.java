@@ -1,7 +1,6 @@
 package pokehmon;
 
 import java.io.FileReader;
-import java.io.InputStreamReader;
 
 public class MenuCapture {
 

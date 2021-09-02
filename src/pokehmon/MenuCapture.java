@@ -2,11 +2,11 @@ package pokehmon;
 
 public class MenuCapture {
 
-	public void AfficherPokemon(Pokehmon p) {
+	public static void AfficherPokemon(Pokehmon p) {
 		System.out.println(p.getApparence() + "Un " + p.getNom() + " sauvage apparait !");
 	}
 	
-	public void AfficherChoix() {
+	public static void AfficherChoix() {
 		System.out.println("Que voulez vous faire ?" + '\n'
 						    + '\t' + "1. Lancer une ball" + '\n'
 							+ '\t' + "2. Donner un cookie" + '\n'
@@ -18,6 +18,10 @@ public class MenuCapture {
 		
 		System.out.println(Choix.values()[nb-1].getRes());
 	}
+	
+	
+	
+	
 	
 	
 	

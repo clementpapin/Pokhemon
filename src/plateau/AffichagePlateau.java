@@ -6,6 +6,7 @@ public class AffichagePlateau {
 		char[][] niveau = p.getNiveau();
 		Joueur joueur = p.getJoueur();
 		System.out.println("Nombre de pas restants : "+(p.getNbPasMax()-joueur.getNbPas()));
+		System.out.println("Nombre de pokehball restantes : "+(Plateau.nbPokehball));
 		System.out.println("Score : "+Plateau.score);
 		int nblig = 0;
 		for (int i = 0; i < niveau.length; i++) {

@@ -48,8 +48,8 @@ public class ModeCapture {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int entree = -1;
 		MenuCapture.afficherPokemon(pokehmon);
-
-		while(this.pokehmon != null && !captured) {
+		boolean hasPokehball = true;
+		while(this.pokehmon != null && !captured && hasPokehball) {
 			do {
 				try {
 					MenuCapture.afficherChoix();
@@ -60,16 +60,11 @@ public class ModeCapture {
 			
 			MenuCapture.afficherResChoix(entree);
 			switch(Choix.values()[entree-1]) {
-				case BALL :
-					if(Plateau.nbPokehball>0) {
-						Plateau.nbPokehball--;
-						captured = capturePokehmon();
-						if(!captured) MenuCapture.afficherCaptureFail(pokehmon);
-					} else {
-						System.out.println("Vous n'avez plus de pokehball !");
-						fuite();
-					}
-					
+				case BALL : 
+					Plateau.nbPokehball--;
+					captured = capturePokehmon();
+					if(!captured) MenuCapture.afficherCaptureFail(pokehmon);
+					System.out.println("Nombre de pokehball restantes : "+Plateau.nbPokehball);
 					break;
 					
 				case CAILLOU :
@@ -88,6 +83,9 @@ public class ModeCapture {
 
 			if(!captured && this.pokehmon != null && essaifuitePokehmon()) fuite();
 			if(this.pokehmon != null) pokehmon.setTauxfuite(pokehmon.getTauxfuite()+AUGMENTATIONFUITE);
+			if(Plateau.nbPokehball <= 0) {
+				hasPokehball = false;
+			}
 			
 			entree = 0;
 		}

@@ -11,7 +11,7 @@ public class Plateau {
 	private Joueur joueur;
 	private int nbPasMax;
 	public static int score = 0;
-	public static int nbPokehball = 5;
+	public static int nbPokehball = 1;
 	
 	public Plateau(char[][] niveau, Joueur joueur, int nbPas) {
 		this.niveau = niveau;
@@ -123,7 +123,12 @@ public class Plateau {
 			Deplacement.entree_deplacement_joueur(p);
 			p.affichagePlateau();
 		}
-		System.out.println("Nombre de pas écouler !");
-		System.out.println("Votre score est de "+Plateau.score+" points !");
+		if(nbPokehball==0) {
+			System.out.println("Vous n'avez plus de pokehball !");
+			System.out.println("Votre score est de "+Plateau.score+" points !");
+		} else {
+			System.out.println("Nombre de pas écouler !");
+			System.out.println("Votre score est de "+Plateau.score+" points !");
+		}
 	}
 }

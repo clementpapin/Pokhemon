@@ -28,24 +28,24 @@ public class ModeCapture {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int entree = -1;
 		
-		MenuCapture.AfficherPokemon(pokehmon);
+		MenuCapture.afficherPokemon(pokehmon);
 
 		while(this.pokehmon != null && captured == false) {
 			do {
 				try {
 //					System.out.println("Taux capture :" + this.pokehmon.getTauxcapture());
 //					System.out.println("Taux fuite :" + this.pokehmon.getTauxfuite());
-					MenuCapture.AfficherChoix();
+					MenuCapture.afficherChoix();
 					entree = Integer.parseInt(br.readLine());
 				} catch (Exception e) {	
 				}
 			} while(!isValidChoice(entree));
 			
-			MenuCapture.AfficherResChoix(entree);
+			MenuCapture.afficherResChoix(entree);
 			switch(Choix.values()[entree-1]) {
 				case BALL :
 					captured = capturePokehmon();
-					if(!captured) MenuCapture.AfficherCaptureFail(pokehmon);
+					if(!captured) MenuCapture.afficherCaptureFail(pokehmon);
 					break;
 					
 				case CAILLOU :
@@ -68,7 +68,7 @@ public class ModeCapture {
 			entree = 0;
 		}
 		
-		if(captured) MenuCapture.AfficherCapture(this.pokehmon);
+		if(captured) MenuCapture.afficherCapture(this.pokehmon);
 		else if (this.pokehmon == null && !fuitejoueur) System.out.println("Le pokehmon a fui");
 		
 		return pokehmon;

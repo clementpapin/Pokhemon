@@ -5,11 +5,11 @@ import java.io.InputStreamReader;
 
 public class MenuCapture {
 
-	public static void AfficherPokemon(Pokehmon p) {
+	public static void afficherPokemon(Pokehmon p) {
 		System.out.println(p.getApparence() + '\n' + "Un " + p.getNom() + " sauvage apparait !");
 	}
 
-	public static void AfficherChoix() {
+	public static void afficherChoix() {
 		System.out.println("Que voulez vous faire ?" + '\n'
 				+ '\t' + "1. Lancer une ball" + '\n'
 				+ '\t' + "2. Donner un cookie" + '\n'
@@ -17,13 +17,13 @@ public class MenuCapture {
 				+ '\t' + "4. Fuir");
 	}
 
-	public static void AfficherResChoix(int nb) {
+	public static void afficherResChoix(int nb) {
 
 		System.out.println(Choix.values()[nb-1].getRes());
 	}
 
-	public static void AfficherCapture(Pokehmon p ) {
-		MenuCapture.AfficherDessin();
+	public static void afficherCapture(Pokehmon p ) {
+		MenuCapture.afficherDessin();
 		System.out.print("\u001b[38;5;16m");
 		System.out.println('\n' + p.getNom() + " attrapé !");
 		try {
@@ -34,17 +34,17 @@ public class MenuCapture {
 		}
 	}
 
-	public static void AfficherCaptureFail(Pokehmon p) {
+	public static void afficherCaptureFail(Pokehmon p) {
 		System.out.println(p.getNom() + " s'échappe de la ball !");
 	}
 
 
 
-	public static void AfficherDessin() {
+	public static void afficherDessin() {
 		char c;
 
 		System.out.print("\u001b[48;38;5;0m");
-		try (FileReader f = new FileReader("src/ArtWork/Ball");){
+		try (FileReader f = new FileReader("res/artwork/Ball");){
 			int i = -1;
 			do {
 				i = f.read();

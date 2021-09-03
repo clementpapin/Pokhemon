@@ -19,13 +19,20 @@ public class MenuCapture {
 				+ '\t' + "3. Lancer un caillou" + '\n'
 				+ '\t' + "4. Fuir");
 	}
+	
+	public static void afficherPoke() {
+		System.out.println("Quel type de Ball voulez-vous utiliser ?" + '\n'
+				+ '\t' + "1. Normal Ball" + '\n'
+				+ '\t' + "2. FiletBall" + '\n'
+				+ '\t' + "3. Retour" );
+	}
 
 	public static void afficherResChoix(int nb) {
 		String res = "";
 		
 		switch(nb) {
 		case 1:
-			System.out.println(Ball.MESSAGE);
+		
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

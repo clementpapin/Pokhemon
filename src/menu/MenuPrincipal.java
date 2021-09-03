@@ -111,7 +111,7 @@ public class MenuPrincipal {
 				}
 
 			}while(i != -1);
-			System.out.print("\u001b[48;38;5;0m");
+			System.out.println("\u001b[48;5;236m");
 			System.out.print("\u001b[38;5;255m");	
 		} catch (Exception e) {}
 	}

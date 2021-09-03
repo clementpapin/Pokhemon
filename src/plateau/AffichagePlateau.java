@@ -2,7 +2,8 @@ package plateau;
 
 public class AffichagePlateau {
 	public static void afficherPlateau(Plateau p) {
-		System.out.print("\u001b[48;38;5;0m");
+		System.out.print("\u001b[48;5;236m");
+		System.out.print("\u001b[38;5;255m");
 		char[][] niveau = p.getNiveau();
 		Joueur joueur = p.getJoueur();
 		System.out.println("Entrez 'e' pour revenir au menu");
@@ -21,10 +22,10 @@ public class AffichagePlateau {
 			for (int i = 0; i < 2; i++) {
 				for (int c = 0; c < niveau.length; c++) {
 					modification_couleur(niveau, l, c);
-						
-					affichage_case(niveau, joueur, l, c, i);
 
-					System.out.print("\u001b[48;38;5;0m");
+					affichage_case(niveau, joueur, l, c, i);
+					System.out.print("\u001b[48;5;236m");
+					System.out.print("\u001b[38;5;255m");
 				}
 				System.out.println();
 			}

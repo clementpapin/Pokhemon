@@ -77,7 +77,7 @@ public class MenuPrincipal {
 	}
 
 	private static boolean isValidChoice(int entree) {
-		return entree > 0 && entree <= 4;
+		return entree > 0 && entree <= 5;
 	}
 
 	private static void displayChoices() {

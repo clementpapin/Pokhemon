@@ -53,10 +53,18 @@ Sprint 4
 Sprint 5
 
 - Avancement des 2 modes de jeu
-- 
+- Avancement esthétique
+- Avancement items
+- Avancement différents types pokehablls
 
+Sprint 6
 
+- Livraison des 2 modes de jeu
+- Livraison esthétique
+- Livraison items
+- Livraison différents types pokehablls
 
+Fin du jeu
 
 
 

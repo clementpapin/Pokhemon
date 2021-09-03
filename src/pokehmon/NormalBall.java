@@ -12,6 +12,10 @@ public class NormalBall extends Choix implements Ball {
 		return Type.NORMAL;
 	}
 	
+	public String toString() {
+		return "Vous tentez d'attraper le pokehmon avec une Ball";
+	}
+	
 	
 
 }

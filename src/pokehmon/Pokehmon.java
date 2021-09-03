@@ -4,6 +4,7 @@ public class Pokehmon {
 	private String nom, apparence;
 	private double tauxcapture, tauxfuite;
 	private int points;
+	private Type type = Type.NORMAL;
 	
 	public Pokehmon() {
 		this(ListePokehmon.PIKAHCHU.getNom(),ListePokehmon.PIKAHCHU.getApparence(), ListePokehmon.PIKAHCHU.getTauxcapture(), ListePokehmon.PIKAHCHU.getTauxfuite(), ListePokehmon.PIKAHCHU.getPoints());
@@ -66,4 +67,21 @@ public class Pokehmon {
 		if(tauxcapture+taux>0 && tauxcapture+taux<100)	tauxcapture+=taux;
 	}
 	
+	public void modify_pokehmon_stats(Choix choix) {
+		if(choix instanceof Ball) {
+			Ball b = (Ball) choix;
+			if(this.type == b.estEfficaceContre() ) {
+				this.augmenter_taux_capture(choix.AUGMENTATION_TAUX_CAPTURE);
+			}
+			
+		}else {
+			this.augmenter_taux_capture(choix.AUGMENTATION_TAUX_CAPTURE);
+			this.augmenter_taux_fuite(choix.AUGMENTATION_TAUX_FUITE);
+		}
+	}
+	
+	public void remove_pokehmon_stats(Choix choix) {
+		this.augmenter_taux_capture(-choix.AUGMENTATION_TAUX_CAPTURE);
+		this.augmenter_taux_fuite(-choix.AUGMENTATION_TAUX_FUITE);
+	}
 }

@@ -10,13 +10,13 @@ import plateau.Plateau;
 
 public class ModeCapture {
 	private Pokehmon pokehmon;
-	private static Choix ball = new Ball();
+	private static Choix ball = new NormalBall();
 	private static Choix caillou = new Caillou();
 	private static Choix cookie = new Cookie();
 	
 	public ModeCapture(Pokehmon pokehmon) {
 		this.pokehmon = pokehmon;
-		ModeCapture.ball = new Ball();
+		ModeCapture.ball = new NormalBall();
 	}
 	
 	/**
@@ -62,21 +62,21 @@ public class ModeCapture {
 			switch(entree) {
 				case 1 :
 					Plateau.nbPokehball--;
-					modify_pokehmon_stats(ball);
+					pokehmon.modify_pokehmon_stats(ball);
 					captured = capturePokehmon();
 					if(!captured) {
 						MenuCapture.afficherCaptureFail(pokehmon);
 						System.out.println("Nombre de pokehball restantes : "+Plateau.nbPokehball);
 					}
-					remove_pokehmon_stats(ball);
+					pokehmon.remove_pokehmon_stats(ball);
 					break;
 					
 				case 2 :
-					modify_pokehmon_stats(cookie);
+					pokehmon.modify_pokehmon_stats(cookie);
 					break;
 					
 				case 3 :
-					modify_pokehmon_stats(caillou);
+					pokehmon.modify_pokehmon_stats(caillou);
 					break;
 					
 				case 4 :
@@ -144,13 +144,5 @@ public class ModeCapture {
 	private void fuite() {
 		this.pokehmon = null;
 	}
-	private void modify_pokehmon_stats(Choix choix) {
-		this.pokehmon.augmenter_taux_capture(choix.AUGMENTATION_TAUX_CAPTURE);
-		this.pokehmon.augmenter_taux_fuite(choix.AUGMENTATION_TAUX_FUITE);
-	}
-	
-	private void remove_pokehmon_stats(Choix choix) {
-		this.pokehmon.augmenter_taux_capture(-choix.AUGMENTATION_TAUX_CAPTURE);
-		this.pokehmon.augmenter_taux_fuite(-choix.AUGMENTATION_TAUX_FUITE);
-	}
+
 }

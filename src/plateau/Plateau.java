@@ -2,6 +2,7 @@ package plateau;
 
 import java.util.Random;
 
+import menu.Pokehdex;
 import pokehmon.ListePokehmon;
 import pokehmon.ModeCapture;
 import pokehmon.Pokehmon;
@@ -12,10 +13,11 @@ public class Plateau {
 	private int nbPasMax;
 	public static int score = 0;
 	public static int nbPokehball = 20;
+	private static boolean retour_menu;
 	
 	private static Runnable myrunnable = new Runnable() {
 	    public void run() {
-	    	MidiPlayer.play("route-1.mid");
+	    	MidiPlayer.playloop("route-1.mid");
 	    	}
 	};
 	
@@ -25,9 +27,10 @@ public class Plateau {
 		this.niveau = niveau;
 		this.joueur = joueur;
 		this.nbPasMax = nbPas;
+		retour_menu = false;
 	}
 	public Plateau(Couple<char[][], Joueur> couple) {
-		this(couple.getFirst(),couple.getSecond(),5);
+		this(couple.getFirst(),couple.getSecond(),50);
 	}
 	
 	public int getNbPasMax() {
@@ -83,26 +86,37 @@ public class Plateau {
 		case 'd':
 			j_col++;
 			break;
+		case 'e':
+			retour_menu = true;
+			break;
+		case 'p':
+			Pokehdex.show();
+			break;
 		default:
 			break;
 		}
 		
 		char case_apres_mouvement = niveau[j_col][j_lig];
-		if(case_apres_mouvement==' ') {
-			joueur.setX(j_col); joueur.setY(j_lig);
+		if(!(case_apres_mouvement == 'R' || case_apres_mouvement == 'E' || case_apres_mouvement=='/' 
+				|| (j_col==joueur.getX() && j_lig==joueur.getY()))) {
+			if(case_apres_mouvement==' ') {
+				joueur.setX(j_col); joueur.setY(j_lig);
+			}else if(case_apres_mouvement=='H'){
+				joueur.setX(j_col); joueur.setY(j_lig);
+				chance_apparition_pokemon();
+			} else if(case_apres_mouvement=='D') {
+				changerPlateau(case_apres_mouvement);
+			} else if(case_apres_mouvement=='G') {
+				changerPlateau(case_apres_mouvement);
+			} else if(case_apres_mouvement=='L') {
+				changerPlateau(case_apres_mouvement);
+			} else if(case_apres_mouvement=='P') {
+				changerPlateau(case_apres_mouvement);
+			}else if(case_apres_mouvement=='I') {
+				joueur.diminuer_nb_pas(20);;
+				niveau[j_col][j_lig] = ' ';
+			}
 			joueur.augmenterPas();
-		}else if(case_apres_mouvement=='H'){
-			joueur.setX(j_col); joueur.setY(j_lig);
-			joueur.augmenterPas();
-			chance_apparition_pokemon();
-		} else if(case_apres_mouvement=='D') {
-			changerPlateau(case_apres_mouvement);
-		} else if(case_apres_mouvement=='G') {
-			changerPlateau(case_apres_mouvement);
-		} else if(case_apres_mouvement=='L') {
-			changerPlateau(case_apres_mouvement);
-		} else if(case_apres_mouvement=='P') {
-			changerPlateau(case_apres_mouvement);
 		}
 	}
 	
@@ -132,17 +146,25 @@ public class Plateau {
 		Joueur joueur = p.getJoueur();
 		wildThread.start();
 		
-		while(joueur.getNbPas() != p.nbPasMax && nbPokehball>0) {
+		while(joueur.getNbPas() != p.nbPasMax && nbPokehball>0 && !retour_menu) {
 			Deplacement.entree_deplacement_joueur(p);
 			p.affichagePlateau();
 		}
 		if(nbPokehball==0) {
 			System.out.println("Vous n'avez plus de pokehball !");
-			System.out.println("Votre score est de "+Plateau.score+" points !");
-		} else {
-			System.out.println("Nombre de pas écouler !");
-			System.out.println("Votre score est de "+Plateau.score+" points !");
+		} else if(joueur.getNbPas() == p.nbPasMax) {
+			System.out.println("Le temps est écoulé !");
+		}else {
+			System.out.println("Vous décidez de partir...");
 		}
+		System.out.println("Votre score est de "+Plateau.score+" points !");
+
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("\n\n\n\n\n\n");
 		wildThread.interrupt();
 	}
 }

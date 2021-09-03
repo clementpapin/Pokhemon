@@ -9,5 +9,6 @@ public class Main {
 		Pokehmon p = new Pokehmon(poke);
 		ModeCapture mc = new ModeCapture(p);
 		mc.startCapture();
+		//TODO enlever quand on a plus besoin
 	}
 }

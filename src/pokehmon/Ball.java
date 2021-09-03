@@ -1,12 +1,9 @@
 package pokehmon;
 
-public class Ball implements Choix{
-
-	public String getRes() {
-		
-		return "Vous tentez d'attraper le pokehmon";
+public class Ball extends Choix{
+	public static final String MESSAGE = "Vous tentez d'attraper le pokehmon";
+	
+	public Ball() {
+		super(0,0);
 	}
-	
-	
-
 }

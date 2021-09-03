@@ -2,39 +2,39 @@ package menu;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-
+import plateau.ChargerPlateau;
 import plateau.MidiPlayer;
 import plateau.Plateau;
 
 public class MenuPrincipal {
 
-
-
-
 	public static void main(String[] args) {
 		Runnable myrunnable = new Runnable() {
 		    public void run() {
-		    	MidiPlayer.play("title-screen.mid");
+		    	MidiPlayer.playloop("title-screen.mid");
 		    	}
 		};
-		
 		
 		boolean end = false;
 		int entree = -1;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+		Thread wildThread = new Thread(myrunnable);
+		wildThread.start();
 		while (!end) {
-			Thread wildThread = new Thread(myrunnable);
-			wildThread.start();
+			if(wildThread.isInterrupted()) {
+				System.out.println("ok");
+				wildThread = new Thread(myrunnable);
+				wildThread.start();
+			}
+			
 			do {
 				displayChoices();
 				try {
 					entree = Integer.parseInt(br.readLine());
-				} catch (Exception e) {
-				}
+				} catch (Exception e) {}
 
 			} while (!isValidChoice(entree));
 			switch (entree) {
@@ -43,15 +43,17 @@ public class MenuPrincipal {
 					wildThread.interrupt();
 					Plateau.main(new String[0]);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
 			case 2:
 				afficherRegles();
 				break;
-
 			case 3:
+				Pokehdex.show();
+				break;
+				
+			case 4:
 				end = true;
 				break;
 
@@ -60,28 +62,32 @@ public class MenuPrincipal {
 			}
 			entree = -1;
 		}
+		System.out.println("Merci d'avoir joué !!!");
+		System.exit(0);
 	}
 
 	private static boolean isValidChoice(int entree) {
-		return entree > 0 && entree <= 3;
+		return entree > 0 && entree <= 4;
 	}
 
 	private static void displayChoices() {
 		MenuPrincipal.afficherTitre();
-		System.out.println("" + '\n' + '\n' 
+		System.out.println("\u001b[0m" + '\n' + '\n' 
 				+ '\t' + '\t' + '\t' + "1. Jouer" + '\n'
 				+ '\t' + '\t' + '\t' + "2. Comment jouer ?" + '\n'
-				+ '\t' + '\t' + '\t' + "3. Quitter");
+				+ '\t' + '\t' + '\t' + "3. Pokehdex" + '\n'
+				+ '\t' + '\t' + '\t' + "4. Quitter");
 	}
 
 	public static void afficherTitre() {
 		char c;
 
-
 		System.out.print("\u001b[48;5;11m");
 		System.out.print("\u001b[38;5;20m");
 		System.out.print("\u001b[1m");
-		try (FileReader f = new FileReader("res/artwork/Titre");){
+		InputStream in = ChargerPlateau.class.getResourceAsStream("/artwork/Titre"); 
+
+		try (InputStreamReader f = new InputStreamReader(in);){
 			int i = -1;
 			do {
 				i = f.read();
@@ -90,30 +96,21 @@ public class MenuPrincipal {
 				if(c != '/' && c != '\\' && c != '_' && c != '<' && c !='\n') {
 					System.out.print(" ");
 				} else {
-
-
 					System.out.print(c);
 				}
 
-
-
 			}while(i != -1);
-
-
 			System.out.print("\u001b[48;38;5;0m");
 			System.out.print("\u001b[38;5;255m");	
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		} catch (Exception e) {}
 	}
-
 
 	public static void afficherRegles() {
 		char c;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		InputStream in = ChargerPlateau.class.getResourceAsStream("/menu/Regles"); 
 
-		try (FileReader f = new FileReader("res/text/Regles");){
+		try (InputStreamReader f = new InputStreamReader(in);){
 			int i = -1;
 			i = f.read();
 			
@@ -127,22 +124,9 @@ public class MenuPrincipal {
 			System.out.println("\n\n\n");
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public static void clear() {
-		try {
-			Runtime.getRuntime().exec("clear");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 }
-
-

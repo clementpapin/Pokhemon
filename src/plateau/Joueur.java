@@ -35,6 +35,11 @@ public class Joueur {
 	public void setNbPas(int nbPas) {
 		this.nbPas = nbPas;
 	}
+	
+	public void diminuer_nb_pas(int nbPas) {
+		this.nbPas-=nbPas;
+		if(this.nbPas<0) nbPas=0;
+	}
 
 	public int getScore() {
 		return score;

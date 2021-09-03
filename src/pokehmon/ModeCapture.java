@@ -4,19 +4,19 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Random;
 
+import menu.Pokehdex;
 import plateau.MidiPlayer;
 import plateau.Plateau;
 
 public class ModeCapture {
 	private Pokehmon pokehmon;
-	private static final double AUGMENTATIONFUITE = 2.0;
-	private static final double AUGMENTATIONFUITECAILLOU = 20.0;
-	private static final double DIMINUTIONFUITECOOKIE = 20.0;
-	private static final double AUGMENTATIONCAPTURECAILLOU = 20.0;
-	private static final double DIMINUTIONCAPTURECOOKIE = 20.0;
+	private static Choix ball = new Ball();
+	private static Choix caillou = new Caillou();
+	private static Choix cookie = new Cookie();
 	
 	public ModeCapture(Pokehmon pokehmon) {
 		this.pokehmon = pokehmon;
+		ModeCapture.ball = new Ball();
 	}
 	
 	/**
@@ -27,15 +27,15 @@ public class ModeCapture {
 	public Pokehmon startCapture() {
 		Runnable myrunnable = new Runnable() {
 		    public void run() {
-		    	MidiPlayer.play("wild-pokemon-battle.mid");
+		    	MidiPlayer.playloop("wild-pokemon-battle.mid");
 		    	}
 		};
-		
 		Thread wildThread = new Thread(myrunnable);
 		wildThread.start();
+		
 		Runnable caught = new Runnable() {
 		    public void run() {
-		    	MidiPlayer.play("wild-pokemon-caught.mid");
+		    	MidiPlayer.playonce("wild-pokemon-caught.mid");
 		    	}
 		};
 		Thread caughtThread = new Thread(caught);
@@ -62,17 +62,21 @@ public class ModeCapture {
 			switch(entree) {
 				case 1 :
 					Plateau.nbPokehball--;
+					modify_pokehmon_stats(ball);
 					captured = capturePokehmon();
-					if(!captured) MenuCapture.afficherCaptureFail(pokehmon);
-					System.out.println("Nombre de pokehball restantes : "+Plateau.nbPokehball);
+					if(!captured) {
+						MenuCapture.afficherCaptureFail(pokehmon);
+						System.out.println("Nombre de pokehball restantes : "+Plateau.nbPokehball);
+					}
+					remove_pokehmon_stats(ball);
 					break;
 					
 				case 2 :
-					lanceCaillou();
+					modify_pokehmon_stats(cookie);
 					break;
 					
 				case 3 :
-					donneCookie();
+					modify_pokehmon_stats(caillou);
 					break;
 					
 				case 4 :
@@ -82,24 +86,28 @@ public class ModeCapture {
 			}
 
 			if(!captured && this.pokehmon != null && essaifuitePokehmon()) fuite();
-			if(this.pokehmon != null) pokehmon.setTauxfuite(pokehmon.getTauxfuite()+AUGMENTATIONFUITE);
 			if(Plateau.nbPokehball <= 0) {
 				hasPokehball = false;
 			}
-			
 			entree = 0;
 		}
 		
 		if(captured) {
+			Pokehdex.sendToPokehdex(this.pokehmon.getNom());
 			wildThread.interrupt();
 			caughtThread.start();
 			MenuCapture.afficherCapture(this.pokehmon);
 			Plateau.score+=this.pokehmon.getPoints();
-			menu.Pokehdex.sendToPokehdex(this.pokehmon.getNom());
 			return pokehmon;
 		}
-		else if (this.pokehmon == null && !fuitejoueur) System.out.println("Le pokehmon a fui");
+		else if (this.pokehmon == null && !fuitejoueur) System.out.println("Le pokehmon a fuit.");
 		wildThread.interrupt();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("\n\n\n\n\n");
 		return null;
 	}
 	
@@ -122,7 +130,7 @@ public class ModeCapture {
 	}
 	
 	/**
-	 * Le Pokehmon tente de fuire selon son taux de fuite
+	 * Le Pokehmon tente de fuir selon son taux de fuite
 	 * @return true si la fuite a réussi, false dans le cas contraire
 	 */
 	private boolean essaifuitePokehmon() {
@@ -131,28 +139,18 @@ public class ModeCapture {
 	}
 	
 	/**
-	 * Fait fuire le joueur
+	 * Fait fuir le joueur
 	 */
 	private void fuite() {
 		this.pokehmon = null;
 	}
-	
-	/**
-	 * Lance un caillou sur le pokehmon, diminuant son taux de fuite mais aussi son taux de capture
-	 */
-	private void lanceCaillou() {
-		this.pokehmon.setTauxfuite(this.pokehmon.getTauxfuite()+AUGMENTATIONFUITECAILLOU);
-		this.pokehmon.setTauxcapture(this.pokehmon.getTauxcapture()+AUGMENTATIONCAPTURECAILLOU);
+	private void modify_pokehmon_stats(Choix choix) {
+		this.pokehmon.augmenter_taux_capture(choix.AUGMENTATION_TAUX_CAPTURE);
+		this.pokehmon.augmenter_taux_fuite(choix.AUGMENTATION_TAUX_FUITE);
 	}
 	
-	/**
-	 * Donne un cookie au pokehmon, augmentant son taux de capture mais aussi son taux de fuite
-	 */
-	private void donneCookie() {
-		if(this.pokehmon.getTauxfuite()-DIMINUTIONFUITECOOKIE > 0) this.pokehmon.setTauxfuite(this.pokehmon.getTauxfuite()-DIMINUTIONFUITECOOKIE);
-		else this.pokehmon.setTauxfuite(0);
-		
-		if(this.pokehmon.getTauxcapture()-DIMINUTIONCAPTURECOOKIE > 0) this.pokehmon.setTauxcapture(this.pokehmon.getTauxcapture()-DIMINUTIONCAPTURECOOKIE);
-		else this.pokehmon.setTauxcapture(0);
+	private void remove_pokehmon_stats(Choix choix) {
+		this.pokehmon.augmenter_taux_capture(-choix.AUGMENTATION_TAUX_CAPTURE);
+		this.pokehmon.augmenter_taux_fuite(-choix.AUGMENTATION_TAUX_FUITE);
 	}
 }

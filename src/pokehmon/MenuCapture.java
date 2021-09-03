@@ -1,11 +1,15 @@
 package pokehmon;
 
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import plateau.ChargerPlateau;
 
 public class MenuCapture {
+	static Pokehmon pok = new Pokehmon();
 
 	public static void afficherPokemon(Pokehmon p) {
 		System.out.println(p.getApparence() + '\n' + "Un " + p.getNom() + " sauvage apparait !");
+		pok = p;
 	}
 
 	public static void afficherChoix() {
@@ -18,40 +22,42 @@ public class MenuCapture {
 
 	public static void afficherResChoix(int nb) {
 		String res = "";
+		
 		switch(nb) {
 		case 1:
-			System.out.println(new Ball().getRes());
+			System.out.println(Ball.MESSAGE);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("1...");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println('\t' + "2...");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("\t\t" + "3...");
-
+			try {
+				Thread.sleep(1600);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			break;
 		case 2:
-			res = new Cookie().getRes();
+			res = Cookie.MESSAGE;
 			break;
 		case 3:
-			res = new Caillou().getRes();
+			res = Caillou.MESSAGE;
 			break;
 		case 4:
-			res = new Fuite().getRes();
+			res = "Vous prenez la fuite";
 			break;
 
 		}
@@ -62,7 +68,6 @@ public class MenuCapture {
 		try {
 			Thread.sleep(1500);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		MenuCapture.afficherDessin();
@@ -72,23 +77,19 @@ public class MenuCapture {
 		try {
 			Thread.sleep(1500);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void afficherCaptureFail(Pokehmon p) {
 		System.out.println(p.getNom() + " s'échappe de la ball !");
 	}
 
-
-
 	public static void afficherDessin() {
 		char c;
-
 		System.out.print("\u001b[48;38;5;0m");
-		try (FileReader f = new FileReader("res/artwork/Ball");){
+		InputStream in = ChargerPlateau.class.getResourceAsStream("/artwork/Ball"); 
+		try (InputStreamReader f = new InputStreamReader(in);){
 			int i = -1;
 			do {
 				i = f.read();
@@ -112,13 +113,6 @@ public class MenuCapture {
 
 			}while(i != -1);
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-
-
+		} catch (Exception e) {}
 	}
-
-
-
 }

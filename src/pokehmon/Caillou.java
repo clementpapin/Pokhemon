@@ -1,10 +1,9 @@
 package pokehmon;
 
-public class Caillou implements Choix{
+public class Caillou extends Choix{
+	public static final String MESSAGE = "Le pokehmon s'énerve !";
 
-	@Override
-	public String getRes() {
-		return "Le pokehmon s'énerve !";
+	public Caillou() {
+		super(14, 14);
 	}
-
 }

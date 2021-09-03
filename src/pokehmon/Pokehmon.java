@@ -58,4 +58,12 @@ public class Pokehmon {
 		return "\""+nom+"\"";
 	}
 	
+	public void augmenter_taux_fuite(double taux) {
+		if(tauxfuite+taux>0 && tauxfuite+taux<100)	tauxfuite+=taux;
+	}
+	
+	public void augmenter_taux_capture(double taux) {
+		if(tauxcapture+taux>0 && tauxcapture+taux<100)	tauxcapture+=taux;
+	}
+	
 }

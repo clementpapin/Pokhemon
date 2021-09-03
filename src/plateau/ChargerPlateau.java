@@ -12,7 +12,6 @@ public class ChargerPlateau {
 		ArrayList<String> al = new ArrayList<String>();
 		int j_x = 0;
 		int j_y = 0;
-		System.out.println(System.getProperty("user.dir"));
 		InputStream in = ChargerPlateau.class.getResourceAsStream("/niveaux/"+nom_fichier); 
 
 		try (BufferedReader bf = new BufferedReader(

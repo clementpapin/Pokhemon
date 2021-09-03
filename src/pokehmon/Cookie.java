@@ -1,14 +1,9 @@
 package pokehmon;
 
-public class Cookie implements Choix{
-
+public class Cookie extends Choix{
+	public static final String MESSAGE = "Le pokehmon devient joyeux !";
 	
-	public String getRes() {
-		
-		return "Le pokehmon devient joyeux !";
+	public Cookie() {
+		super(-14, -14);
 	}
-	
-	
-	
-
 }

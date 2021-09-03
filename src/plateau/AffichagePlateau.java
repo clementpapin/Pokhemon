@@ -5,6 +5,8 @@ public class AffichagePlateau {
 		System.out.print("\u001b[48;38;5;0m");
 		char[][] niveau = p.getNiveau();
 		Joueur joueur = p.getJoueur();
+		System.out.println("Entrez 'e' pour revenir au menu");
+		System.out.println("Entrez 'p' pour ouvrir le pokehdex");
 		System.out.println("Nombre de pas restants : "+(p.getNbPasMax()-joueur.getNbPas()));
 		System.out.println("Nombre de pokehball restantes : "+(Plateau.nbPokehball));
 		System.out.println("Score : "+Plateau.score);
@@ -53,6 +55,13 @@ public class AffichagePlateau {
 			case 'R':
 				System.out.print("▓▓");
 				break;
+			case 'I':
+				if(p==0) {
+					System.out.print("╔╗");
+				}else {
+					System.out.print("╚╝");
+				}
+				break;
 			default:
 				System.out.print("\u001b[48;5;223m\u001b[38;5;208m");
 				System.out.print("  ");
@@ -77,6 +86,9 @@ public class AffichagePlateau {
 			break;
 		case 'R':
 			System.out.print("\u001b[38;5;94m\u001b[48;5;136m");
+			break;
+		case 'I':
+			System.out.print("\u001b[48;5;136m");
 			break;
 		default:
 			break;

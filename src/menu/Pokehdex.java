@@ -37,11 +37,15 @@ public class Pokehdex {
 			do {
 				i = f.read();
 				c = (char) i;
-				if (c != '/' && c != '\\' && c != '_' && c != '<' && c != '\n') {
+				System.out.print("\u001b[48;5;15m");
+				if(c != '/' && c != '\\' && c != '_' && c != '<' && c !='\n') {
 					System.out.print(" ");
+				} else if(c == '\n'){
+					System.out.print("\u001b[48;5;236m\n");
 				} else {
 					System.out.print(c);
 				}
+				System.out.print("\u001b[48;5;236m");
 
 			} while (i != -1);
 

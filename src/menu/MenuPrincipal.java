@@ -105,6 +105,8 @@ public class MenuPrincipal {
 				System.out.print("\u001b[48;5;11m");
 				if(c != '/' && c != '\\' && c != '_' && c != '<' && c !='\n') {
 					System.out.print(" ");
+				} else if(c == '\n'){
+					System.out.print("\u001b[48;5;236m\n");
 				} else {
 					System.out.print(c);
 				}

@@ -93,7 +93,6 @@ public class MenuPrincipal {
 	public static void afficherTitre() {
 		char c;
 
-		System.out.print("\u001b[48;5;11m");
 		System.out.print("\u001b[38;5;20m");
 		System.out.print("\u001b[1m");
 		InputStream in = ChargerPlateau.class.getResourceAsStream("/artwork/Titre"); 
@@ -103,15 +102,16 @@ public class MenuPrincipal {
 			do {
 				i = f.read();
 				c = (char) i;
-
+				System.out.print("\u001b[48;5;11m");
 				if(c != '/' && c != '\\' && c != '_' && c != '<' && c !='\n') {
 					System.out.print(" ");
 				} else {
 					System.out.print(c);
 				}
+				System.out.print("\u001b[48;5;236m");
 
 			}while(i != -1);
-			System.out.println("\u001b[48;5;236m");
+			System.out.print("\u001b[48;5;236m");
 			System.out.print("\u001b[38;5;255m");	
 		} catch (Exception e) {}
 	}

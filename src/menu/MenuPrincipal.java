@@ -54,6 +54,10 @@ public class MenuPrincipal {
 				break;
 				
 			case 4:
+				Pokehdex.reset();
+				break;
+				
+			case 5:
 				end = true;
 				break;
 
@@ -76,7 +80,8 @@ public class MenuPrincipal {
 				+ '\t' + '\t' + '\t' + "1. Jouer" + '\n'
 				+ '\t' + '\t' + '\t' + "2. Comment jouer ?" + '\n'
 				+ '\t' + '\t' + '\t' + "3. Pokehdex" + '\n'
-				+ '\t' + '\t' + '\t' + "4. Quitter");
+				+ '\t' + '\t' + '\t' + "4. Reset Pokehdex" + '\n'
+				+ '\t' + '\t' + '\t' + "5. Quitter");
 	}
 
 	public static void afficherTitre() {

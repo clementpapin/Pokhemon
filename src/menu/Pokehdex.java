@@ -20,7 +20,7 @@ public class Pokehdex {
 		System.out.println("\n");
 		afficherPokehmons(getPokehdex());
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("\nAppuyez sur entrée pour quitter ce menu...");
+		System.out.print("\nAppuyez sur entrée pour quitter le pokehdex...");
 		try {
 			br.readLine();
 		} catch (IOException e) {}
@@ -29,6 +29,8 @@ public class Pokehdex {
 
 	public static void afficherTitre() {
 		char c;
+		System.out.print("\u001b[48;5;15m");
+		System.out.print("\u001b[38;5;124m");
 		InputStream in = ChargerPlateau.class.getResourceAsStream("/artwork/TitrePokehdex"); 
 		try (InputStreamReader f = new InputStreamReader(in);) {
 			int i = -1;
@@ -44,14 +46,15 @@ public class Pokehdex {
 			} while (i != -1);
 
 		} catch (Exception e) {}
+		System.out.print("\u001b[38;5;255m");
+		System.out.print("\u001b[48;38;0m");
 	}
 
 	private static void afficherPokehmons(Map<String, String> pokehdex) {
 		for (ListePokehmon poke : ListePokehmon.values()) {
 			System.out.println('\t'+(isInPokehdex(pokehdex, poke.getNom()) 
 					? "\u001b[48;5;47m\u001b[38;5;0m" :"") +poke.getNom() 
-					+ "\u001b[48;38;5;0m\u001b[38;5;255m"
-					+ "\u001b[48;0m");
+					+ "\u001b[48;38;5;0m\u001b[38;5;255m");
 		}
 	}
 
@@ -116,5 +119,11 @@ public class Pokehdex {
 		}
 
 		return map;
+	}
+	public static void reset() {
+		try(FileWriter fw = new FileWriter(new File(savedir, "pokehdex.csv"));) {
+			fw.write("");
+		} catch (IOException e) {
+		}
 	}
 }

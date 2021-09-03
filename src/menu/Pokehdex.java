@@ -56,9 +56,11 @@ public class Pokehdex {
 
 	private static void afficherPokehmons(Map<String, String> pokehdex) {
 		for (ListePokehmon poke : ListePokehmon.values()) {
+			System.out.print("\u001b[48;5;236m");
 			System.out.println('\t'+(isInPokehdex(pokehdex, poke.getNom()) 
-					? "\u001b[48;5;47m\u001b[38;5;236m" :"") +poke.getNom() 
+					? "\u001b[48;5;47m\u001b[38;5;0m" :"") +poke.getNom() 
 					+ "\u001b[48;38;5;0m\u001b[38;5;255m");
+			System.out.print("\u001b[48;5;236m");
 		}
 	}
 

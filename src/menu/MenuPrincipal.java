@@ -55,6 +55,12 @@ public class MenuPrincipal {
 				
 			case 4:
 				Pokehdex.reset();
+				System.out.println("Vous venez de reset votre pokehdex !");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				break;
 				
 			case 5:

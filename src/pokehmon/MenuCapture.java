@@ -8,7 +8,7 @@ public class MenuCapture {
 	static Pokehmon pok = new Pokehmon();
 
 	public static void afficherPokemon(Pokehmon p) {
-		System.out.println(p.getApparence() + '\n' + "Un " + p.getNom() + " sauvage apparait !");
+		System.out.println("\u001b[48;5;236m"+p.getApparence()+ '\n' + "Un " + p.getNom() + " sauvage apparait !");
 		pok = p;
 	}
 
